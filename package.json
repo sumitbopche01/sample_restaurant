@@ -1,0 +1,22 @@
+{
+  "name": "sample_restaurant",
+  "version": "1.0.0",
+  "description": "node application for sample restaurant",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebFramework1/sample_restaurant.git"
+  },
+  "author": "Manoj Kumar, Sumit Bopche",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WebFramework1/sample_restaurant/issues"
+  },
+  "homepage": "https://github.com/WebFramework1/sample_restaurant#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
