@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
+const path = require('path');
 
 const restaurantRouters = require('./src/routes/restaurant.route');
 const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
@@ -9,7 +10,7 @@ const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
 require('./src/models/db');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
 app.use(
@@ -18,9 +19,14 @@ app.use(
   }),
 );
 
+app.set('views', path.join(__dirname, './src/views'));
+
 const hbs = exphbs.create({
   extname: '.hbs',
-  partialsDir: ['src/views/partials/'],
+  defaultLayout: 'main',
+  layoutsDir: path.join(app.get('views'), 'layouts'),
+  partialsDir: path.join(app.get('views'), 'partials'),
+  // partialsDir: ['src/views/partials/'],
 });
 
 app.engine('.hbs', hbs.engine);
@@ -30,11 +36,12 @@ app.get('/', (req, res) => {
   res.json({ message: 'ok' });
 });
 
-app.use('/restaurants', restaurantRouters);
+app.use('/api/restaurants', restaurantRouters);
 app.use('/view/restaurants', restaurantViewsRouters);
 
 /* Error handler middleware */
-app.use((err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
   res.status(statusCode).json({ message: err.message });
