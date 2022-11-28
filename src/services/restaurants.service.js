@@ -4,7 +4,7 @@ const Restaurants = require('../models/restaurants.model');
 
 /**
  *
- * @param {String} restaurant_id
+ * @param {String} restaurantId
  * @returns single restaurant document
  */
 async function getSingle(restaurantId) {
