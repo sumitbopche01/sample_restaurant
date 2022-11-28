@@ -50,10 +50,33 @@ async function remove(req, res, next) {
   }
 }
 
+async function showDataView(req, res, next) {
+  try {
+    // call and get data from service
+    res.render('showRestaurants');
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('Error while deleting restaurant', err.message);
+    next(err);
+  }
+}
+
+async function insertDataView(req, res, next) {
+  try {
+    res.render('insertRestaurantForm');
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('Error while deleting restaurant', err.message);
+    next(err);
+  }
+}
+
 module.exports = {
   get,
   getMultiple,
   create,
   update,
   remove,
+  showDataView,
+  insertDataView,
 };
