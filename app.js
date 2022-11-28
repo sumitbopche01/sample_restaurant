@@ -1,8 +1,13 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const restaurantRouters = require('./src/routes/restaurant.route');
+const dbConfig = require('./src/configs/db.config');
+
 const app = express();
 const port = process.env.PORT || 3000;
-const restaurantRouters = require('./src/routes/restaurant.route');
+
+mongoose.connect(dbConfig.atlas_url);
 
 app.use(bodyParser.json());
 app.use(
