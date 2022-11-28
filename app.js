@@ -32,10 +32,6 @@ const hbs = exphbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-app.get('/', (req, res) => {
-  res.json({ message: 'ok' });
-});
-
 app.use('/api/restaurants', restaurantRouters);
 app.use('/view/restaurants', restaurantViewsRouters);
 
