@@ -1,24 +1,33 @@
 {
-  "name": "sample_restaurant",
-  "version": "1.0.0",
-  "description": "node application for sample restaurant",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WebFramework1/sample_restaurant.git"
-  },
-  "author": "Manoj Kumar, Sumit Bopche",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/WebFramework1/sample_restaurant/issues"
-  },
-  "homepage": "https://github.com/WebFramework1/sample_restaurant#readme",
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "mongoose": "^6.7.3"
-  }
+	"name": "sample_restaurant",
+	"version": "1.0.0",
+	"description": "node application for sample restaurant",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"dev": "nodemon app.js",
+		"lint:fix": "eslint --fix ./*.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WebFramework1/sample_restaurant.git"
+	},
+	"author": "Manoj Kumar, Sumit Bopche",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/WebFramework1/sample_restaurant/issues"
+	},
+	"homepage": "https://github.com/WebFramework1/sample_restaurant#readme",
+	"dependencies": {
+		"body-parser": "^1.20.1",
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
+		"mongoose": "^6.7.3"
+	},
+	"devDependencies": {
+		"eslint": "^8.28.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"nodemon": "^2.0.20"
+	}
 }
