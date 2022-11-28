@@ -1,36 +1,33 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const restaurantRouters = require('./src/routes/restaurant.route');
-const dbConfig = require('./src/configs/db.config');
+require('./src/models/db');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect(dbConfig.atlas_url);
-
 app.use(bodyParser.json());
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
+	bodyParser.urlencoded({
+		extended: true,
+	})
 );
 
 app.get('/', (req, res) => {
-  res.json({'message': 'ok'});
-})
+	res.json({ message: 'ok' });
+});
 
 app.use('/restaurants', restaurantRouters);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  console.error(err.message, err.stack);
-  res.status(statusCode).json({'message': err.message});
-  
-  return;
+	const statusCode = err.statusCode || 500;
+	console.error(err.message, err.stack);
+	res.status(statusCode).json({ message: err.message });
+
+	return;
 });
 
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+	console.log(`Example app listening at http://localhost:${port}`);
 });
