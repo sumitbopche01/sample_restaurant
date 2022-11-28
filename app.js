@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
+const exphbs = require('express-handlebars');
+
 const restaurantRouters = require('./src/routes/restaurant.route');
+const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
+
 require('./src/models/db');
 
 const app = express();
@@ -14,11 +18,20 @@ app.use(
   }),
 );
 
+const hbs = exphbs.create({
+  extname: '.hbs',
+  partialsDir: ['src/views/partials/'],
+});
+
+app.engine('.hbs', hbs.engine);
+app.set('view engine', 'hbs');
+
 app.get('/', (req, res) => {
   res.json({ message: 'ok' });
 });
 
 app.use('/restaurants', restaurantRouters);
+app.use('/view/restaurants', restaurantViewsRouters);
 
 /* Error handler middleware */
 app.use((err, req, res) => {
