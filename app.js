@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 
 const restaurantRouters = require('./src/routes/restaurant.route');
 const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
@@ -31,6 +32,13 @@ const hbs = exphbs.create({
 
 app.engine('.hbs', hbs.engine);
 app.set('view engine', 'hbs');
+
+app.post('/login', (req, res) => {
+  const { username } = req.body;
+  const user = { name: username };
+  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
+  res.json({ accessToken });
+});
 
 app.use('/api/restaurants', restaurantRouters);
 app.use('/view/restaurants', restaurantViewsRouters);
