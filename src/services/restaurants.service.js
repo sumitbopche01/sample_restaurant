@@ -8,7 +8,7 @@ const Restaurants = require('../models/restaurants.model');
  * @returns single restaurant document
  */
 async function getSingle(restaurantId) {
-  const rows = await Restaurants.find({ restaurant_id: restaurantId });
+  const rows = await Restaurants.find({ _id: restaurantId });
   const data = helper.emptyOrRows(rows);
   return {
     data,
@@ -44,7 +44,7 @@ async function create(restaurantData) {
 
   let message = 'Error in creating restaurant';
 
-  if (result.affectedRows) {
+  if (result) {
     message = 'Restaurant created successfully';
   }
 
@@ -58,11 +58,11 @@ async function create(restaurantData) {
  * @returns
  */
 async function update(id, restaurantData) {
-  const result = await Restaurants.update(id, restaurantData);
+  const result = await Restaurants.findByIdAndUpdate(id, restaurantData);
 
   let message = 'Error in updating restaurant';
 
-  if (result.affectedRows) {
+  if (result) {
     message = 'Restaurant updated successfully';
   }
 
@@ -79,7 +79,7 @@ async function remove(id) {
 
   let message = 'Error in deleting restaurant';
 
-  if (result.affectedRows) {
+  if (result) {
     message = 'Restaurant deleted successfully';
   }
 
