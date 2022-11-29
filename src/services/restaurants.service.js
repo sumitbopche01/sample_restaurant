@@ -8,11 +8,11 @@ const Restaurants = require('../models/restaurants.model');
  * @returns single restaurant document
  */
 async function getSingle(restaurantId) {
-  const rows = await Restaurants.find({ _id: restaurantId });
-  const data = helper.emptyOrRows(rows);
-  return {
-    data,
-  };
+    const rows = await Restaurants.find({_id: restaurantId});
+    const data = helper.emptyOrRows(rows);
+    return {
+        data,
+    };
 }
 
 /**
@@ -21,17 +21,18 @@ async function getSingle(restaurantId) {
  * @returns returns list of restaurant documents
  */
 async function getMultiple(page = 1) {
-  const offset = helper.getOffset(page, config.listPerPage);
-  const rows = await Restaurants.find({})
-    .skip(offset)
-    .limit(config.listPerPage);
-  const data = helper.emptyOrRows(rows);
-  const meta = { page };
+    const offset = helper.getOffset(page, config.listPerPage);
+    const rows = await Restaurants.find({})
+        .skip(offset)
+        .limit(config.listPerPage)
+        .lean();
+    const data = helper.emptyOrRows(rows);
+    const meta = {page};
 
-  return {
-    data,
-    meta,
-  };
+    return {
+        data: data,
+        meta,
+    };
 }
 
 /**
@@ -40,15 +41,15 @@ async function getMultiple(page = 1) {
  * @returns
  */
 async function create(restaurantData) {
-  const result = await Restaurants.create(restaurantData);
+    const result = await Restaurants.create(restaurantData);
 
-  let message = 'Error in creating restaurant';
+    let message = 'Error in creating restaurant';
 
-  if (result) {
-    message = 'Restaurant created successfully';
-  }
+    if (result) {
+        message = 'Restaurant created successfully';
+    }
 
-  return { message };
+    return {message};
 }
 
 /**
@@ -58,15 +59,15 @@ async function create(restaurantData) {
  * @returns
  */
 async function update(id, restaurantData) {
-  const result = await Restaurants.findByIdAndUpdate(id, restaurantData);
+    const result = await Restaurants.findByIdAndUpdate(id, restaurantData);
 
-  let message = 'Error in updating restaurant';
+    let message = 'Error in updating restaurant';
 
-  if (result) {
-    message = 'Restaurant updated successfully';
-  }
+    if (result) {
+        message = 'Restaurant updated successfully';
+    }
 
-  return { message };
+    return {message};
 }
 
 /**
@@ -75,21 +76,21 @@ async function update(id, restaurantData) {
  * @returns
  */
 async function remove(id) {
-  const result = await Restaurants.findByIdAndDelete(id);
+    const result = await Restaurants.findByIdAndDelete(id);
 
-  let message = 'Error in deleting restaurant';
+    let message = 'Error in deleting restaurant';
 
-  if (result) {
-    message = 'Restaurant deleted successfully';
-  }
+    if (result) {
+        message = 'Restaurant deleted successfully';
+    }
 
-  return { message };
+    return {message};
 }
 
 module.exports = {
-  getSingle,
-  getMultiple,
-  create,
-  update,
-  remove,
+    getSingle,
+    getMultiple,
+    create,
+    update,
+    remove,
 };
