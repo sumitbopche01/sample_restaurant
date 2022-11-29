@@ -27,7 +27,11 @@ async function getMultiple(page = 1) {
         .limit(config.listPerPage)
         .lean();
     const data = helper.emptyOrRows(rows);
-    const meta = {page};
+    const totalPages = await Restaurants.count() / config.listPerPage;
+    const meta = {
+        page,
+        limit: totalPages
+    };
 
     return {
         data: data,

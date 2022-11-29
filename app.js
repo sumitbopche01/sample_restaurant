@@ -20,6 +20,7 @@ app.use(
     extended: true,
   }),
 );
+app.use(express.static(path.join(__dirname, 'src/public')));
 
 app.set('views', path.join(__dirname, './src/views'));
 
@@ -29,6 +30,17 @@ const hbs = exphbs.create({
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
   // partialsDir: ['src/views/partials/'],
+  helpers: {
+    isEqual: function (number1, number2) {
+      return number1 == number2;
+    },
+    decrement: function (page) {
+      return page <= 1 ? 1 : Number(page) - 1;
+    },
+    increment: function (page, limit) {
+      return page >= limit ? limit : Number(page) + 1;
+    }
+  }
 });
 
 app.engine('.hbs', hbs.engine);
