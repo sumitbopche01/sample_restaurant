@@ -53,7 +53,9 @@ async function remove(req, res, next) {
 async function showDataView(req, res, next) {
   try {
     // call and get data from service
-    res.render('showRestaurants');
+    let data = await restaurantService.getMultiple();
+    console.log(data);
+    res.render('showRestaurants', data);
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('Error while deleting restaurant', err.message);
