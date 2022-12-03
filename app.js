@@ -31,16 +31,11 @@ const hbs = exphbs.create({
   partialsDir: path.join(app.get('views'), 'partials'),
   // partialsDir: ['src/views/partials/'],
   helpers: {
-    isEqual: function (number1, number2) {
-      return number1 == number2;
-    },
-    decrement: function (page) {
-      return page <= 1 ? 1 : Number(page) - 1;
-    },
-    increment: function (page, limit) {
-      return page >= limit ? limit : Number(page) + 1;
-    }
-  }
+    // eslint-disable-next-line eqeqeq
+    isEqual: (number1, number2) => number1 == number2,
+    decrement: (page) => (page <= 1 ? 1 : Number(page) - 1),
+    increment: (page, limit) => (page >= limit ? limit : Number(page) + 1),
+  },
 });
 
 app.engine('.hbs', hbs.engine);
