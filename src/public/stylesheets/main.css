@@ -20,7 +20,7 @@
   color: white;
 }
 
-.button.disabled{
+.button.disabled {
   background-color: #b30000;
   border: 2px solid #b30000;
   color: white;
@@ -52,6 +52,25 @@
   color: white;
 }
 
+
+.redButton{
+    background-color: #ff3333;
+    color: white;
+    border: 2px solid #ff3333;
+    padding: 10px 20px;
+    text-align: center;
+    width: 20%px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.redButton:hover, .redButton:active {
+    background-color: #b30000;
+    border: 2px solid #b30000;
+    color: white;
+}
+
 .greenButton{
   background-color: #009933;
   border: 2px solid #009933;
@@ -70,8 +89,21 @@
   color: white;
 }
 
+table{
+  width: 100%;
+}
+
+td {
+  padding-left: 10px;
+}
+
+th {
+  padding-left: 10px;
+}
+
 thead {
   background: grey;
+  color: white;
 }
 
 .divider{

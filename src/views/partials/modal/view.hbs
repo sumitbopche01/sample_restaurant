@@ -1,0 +1,37 @@
+<div class="modal fade" id="view_restaurant_{{this._id}}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">{{this.name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <b>Restaurant Id:</b> {{this.restaurant_id}}
+                <br>
+                <b>Address:</b> {{this.address.building}} {{this.address.street}}
+                , {{this.borough}} {{this.address.zipcode}}
+                <br>
+                <b>Coordinates:</b> {{this.address.coord}}
+                <br>
+                <b>Cuisine:</b> {{this.cuisine}}
+                <br>
+                {{#if this.grades}}
+                    <b>Grades:</b>
+                    <ul>
+                        {{#each this.grades}}
+                            <li>Grade: {{this.grade}} | Score: {{this.score}} | Date: {{this.date}}</li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="button">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

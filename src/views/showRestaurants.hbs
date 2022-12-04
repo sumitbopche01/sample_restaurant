@@ -35,10 +35,19 @@
                     {{this.cuisine}}
                 </td>
                 <td class="py-4 px-6">
-                    <a class="greenButton" href="/api/restaurants/{{this._id}}">VIEW</a>
-                    <a class="blueButton" href="#">EDIT</a>
+                    <button type="button" class="greenButton" data-toggle="modal" data-target="#view_restaurant_{{this._id}}">
+                        VIEW
+                    </button>
+                    {{> modal/view }}
+                    <button type="button" class="blueButton" data-toggle="modal" data-target="#edit_restaurant_{{this._id}}">
+                        EDIT
+                    </button>
+                    {{> modal/edit }}
                     <div class="divider"/>
-                    <a class="button" href="#">DELETE</a>
+                    <button type="button" class="redButton" data-toggle="modal" data-target="#delete_restaurant_{{this._id}}">
+                        DELETE
+                    </button>
+                    {{> modal/delete }}
                 </td>
             </tr>
         {{/each}}
