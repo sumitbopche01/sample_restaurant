@@ -1,10 +1,10 @@
-<div class="modal fade" id="edit_restaurant_{{this._id}}" tabindex="-1" role="dialog"
+<div class="modal fade" id="Add_restaurant" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">{{this.name}}</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Enter New Restaurant Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -17,7 +17,7 @@
                                 <b>Name:</b>
                             </td>
                             <td>
-                                <input type="text" name="name" value="{{this.name}}" required/>
+                                <input type="text" name="name" placeholder="Enter Name" required/>
                             </td>
                         </tr>
                         <tr>
@@ -25,7 +25,7 @@
                                 <b>Restaurant Id:</b>
                             </td>
                             <td>
-                                <input type="text" name="restaurant_id" value="{{this.restaurant_id}}" required/>
+                                <input type="text" name="restaurant_id" placeholder="Enter Restaurant Id" required/>
                             </td>
                         </tr>
                         <tr>
@@ -33,7 +33,7 @@
                                 <b>Building:</b>
                             </td>
                             <td>
-                                <input type="text" name="building" value="{{this.address.building}}"/>
+                                <input type="text" name="building" placeholder="Enter Building"/>
                             </td>
                         </tr>
                         <tr>
@@ -41,7 +41,7 @@
                                 <b>Street:</b>
                             </td>
                             <td>
-                                <input type="text" name="street" value="{{this.address.street}}"/>
+                                <input type="text" name="street" placeholder="Enter Street"/>
                             </td>
                         </tr>
                         <tr>
@@ -49,7 +49,7 @@
                                 <b>Zip Code:</b>
                             </td>
                             <td>
-                                <input type="text" name="zipcode" value="{{this.address.zipcode}}"/>
+                                <input type="text" name="zipcode" placeholder="Enter Zip Code"/>
                             </td>
                         </tr>
                         <tr>
@@ -57,7 +57,7 @@
                                 <b>Coordinates:</b>
                             </td>
                             <td>
-                                <input type="number" name="coord" value="{{this.address.coord}}"/>
+                                <input type="number" name="coord" placeholder="Enter Coord"/>
                             </td>
                         </tr>
                         <tr>
@@ -65,15 +65,15 @@
                                 <b>Cuisine:</b>
                             </td>
                             <td>
-                                <input type="text" name="cuisine" value="{{this.cuisine}}" required/>
+                                <input type="text" name="cuisine" placeholder="Enter Cuisine" required/>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="operation" value="edit">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <input type="hidden" name="operation" value="add">
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>
