@@ -7,6 +7,7 @@ const path = require('path');
 const restaurantRouters = require('./src/routes/restaurant.route');
 const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
 const userRouters = require('./src/routes/user.route');
+const sessionRouters = require('./src/routes/session.route');
 
 require('./src/models/db');
 require('./src/auth/auth');
@@ -41,6 +42,7 @@ const hbs = exphbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
+app.use('/', sessionRouters);
 app.use('/api/restaurants', restaurantRouters);
 app.use('/api/user', userRouters);
 app.use('/view/restaurants', restaurantViewsRouters);

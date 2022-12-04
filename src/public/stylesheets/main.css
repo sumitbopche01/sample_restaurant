@@ -134,3 +134,22 @@ thead {
   font-style: italic;
   font-size: 40px;
 }
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+}

@@ -15,7 +15,7 @@ async function getMultiple(req, res, next) {
     res.json(await restaurantService.getMultiple(req.query.page));
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error('Error while getting restaurants', err.message);
+    console.error('Error while getting multiple restaurants', err.message);
     next(err);
   }
 }
@@ -56,7 +56,7 @@ async function showDataView(req, res, next) {
     res.render('showRestaurants', await restaurantService.getMultiple(req.query.page));
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error('Error while deleting restaurant', err.message);
+    console.error('Error while showing restaurants using pages', err.message);
     next(err);
   }
 }
@@ -66,7 +66,7 @@ async function insertDataView(req, res, next) {
     res.render('insertRestaurantForm');
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error('Error while deleting restaurant', err.message);
+    console.error('Error while inserting a new restaurant', err.message);
     next(err);
   }
 }
