@@ -53,7 +53,7 @@ async function remove(req, res, next) {
 async function showDataView(req, res, next) {
   try {
     // call and get data from service
-    res.render('showRestaurants', await restaurantService.getMultiple(req.query.page));
+    res.render('showRestaurants', await restaurantService.getMultiple(req.query));
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('Error while showing restaurants using pages', err.message);

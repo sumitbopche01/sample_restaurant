@@ -9,6 +9,7 @@ const restaurantRouters = require('./src/routes/restaurant.route');
 const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
 const userRouters = require('./src/routes/user.route');
 const sessionRouters = require('./src/routes/session.route');
+const { errors } = require('celebrate');
 
 require('./src/models/db');
 require('./src/auth/auth');
@@ -24,6 +25,7 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, 'src/public')));
+app.use(errors());
 
 app.set('views', path.join(__dirname, './src/views'));
 

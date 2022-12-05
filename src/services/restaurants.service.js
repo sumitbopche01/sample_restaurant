@@ -24,7 +24,7 @@ async function getMultiple(queryParams = {}) {
   // eslint-disable-next-line prefer-const
   let { page, perPage, borough } = queryParams;
 
-  page = parseInt(page, 10);
+  page = parseInt(page, 10) || 1;
   perPage = parseInt(perPage, 10);
 
   const numberOfDocuments = perPage || config.listPerPage;
