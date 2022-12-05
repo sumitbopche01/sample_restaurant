@@ -12,7 +12,7 @@ async function get(req, res, next) {
 
 async function getMultiple(req, res, next) {
   try {
-    res.json(await restaurantService.getMultiple(req.query.page));
+    res.json(await restaurantService.getMultiple(req.query));
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('Error while getting multiple restaurants', err.message);
