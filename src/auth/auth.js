@@ -53,7 +53,9 @@ passport.use(
         const validate = await isValidPassword(password, user);
 
         if (!validate) {
-          return done(null, false, { message: 'Wrong Password' });
+          return done(null, false, {
+            message: 'Invalid username or password!',
+          });
         }
 
         return done(null, user, { message: 'Logged in Successfully' });
@@ -65,9 +67,10 @@ passport.use(
 );
 
 passport.use(
+  'jwt',
   new JWTstrategy(
     {
-      secretOrKey: 'TOP_SECRET',
+      secretOrKey: process.env.ACCESS_TOKEN,
       //   jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token'),
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     },

@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
+require('dotenv').config();
 
 const restaurantRouters = require('./src/routes/restaurant.route');
 const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
@@ -19,7 +20,8 @@ app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
-  }),
+  // eslint-disable-next-line comma-dangle
+  })
 );
 app.use(express.static(path.join(__dirname, 'src/public')));
 

@@ -32,7 +32,7 @@ router.post('/login', async (req, res, next) => {
         if (error) return next(error);
 
         const body = { _id: user._id, email: user.email };
-        const token = jwt.sign({ user: body }, 'TOP_SECRET');
+        const token = jwt.sign({ user: body }, process.env.ACCESS_TOKEN, { expiresIn: '24h' });
 
         return res.json({ token });
       });
