@@ -70,7 +70,7 @@ passport.use(
   'jwt',
   new JWTstrategy(
     {
-      secretOrKey: process.env.ACCESS_TOKEN,
+      secretOrKey: process.env.SECRET_TOKEN,
       //   jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token'),
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     },
