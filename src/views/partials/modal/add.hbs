@@ -9,7 +9,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post">
+            <form action="/view/restaurants/add" method="post">
                 <div class="modal-body">
                     <table>
                         <tr>
@@ -46,6 +46,14 @@
                         </tr>
                         <tr>
                             <td>
+                                <b>City:</b>
+                            </td>
+                            <td>
+                                <input type="text" name="borough" placeholder="Enter City"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <b>Zip Code:</b>
                             </td>
                             <td>
@@ -72,7 +80,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="operation" value="add">
+                    <input type="hidden" id="token" name="token" value="">
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>

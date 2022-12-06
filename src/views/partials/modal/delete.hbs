@@ -13,8 +13,10 @@
                 Restaurant <b>{{this.name}}</b> with id <b>{{this.restaurant_id}}</b> will be deleted permanently
             </div>
             <div class="modal-footer">
-                <form>
+                <form action="/view/restaurants/delete" method="post">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="_id" value="{{this._id}}">
+                    <input type="hidden" id="token" name="token" value="">
                     <button type="submit" class="btn btn-primary">Delete</button>
                 </form>
             </div>

@@ -3,7 +3,8 @@ const express = require('express');
 const passport = require('passport');
 
 const router = express.Router();
-const { celebrate, Joi, Segments } = require('celebrate');
+const requestRules = require('../requestRules/restaurant.requestrules');
+const { celebrate } = require('celebrate');
 const restaurantController = require('../controller/restaurant.controller');
 
 /* GET restaurant  */
@@ -15,17 +16,7 @@ router.get('/:restaurant_id', restaurantController.get);
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
-  celebrate({
-    [Segments.BODY]: Joi.object().keys({
-      name: Joi.string().required(),
-      restaurant_id: Joi.string().required(),
-      building: Joi.string().required(),
-      street: Joi.string().required(),
-      zipcode: Joi.string().min(3).required(),
-      coord: Joi.string().required(),
-      cuisine: Joi.string().required()
-    })
-  }),
+  celebrate(requestRules.databaseRestaurantData),
   restaurantController.create
 );
 

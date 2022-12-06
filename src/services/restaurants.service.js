@@ -78,6 +78,7 @@ async function create(restaurantData) {
  * @returns
  */
 async function update(id, restaurantData) {
+  console.log(restaurantData);
   const result = await Restaurants.findByIdAndUpdate(id, restaurantData);
 
   let message = 'Error in updating restaurant';
