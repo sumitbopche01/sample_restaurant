@@ -1,14 +1,14 @@
 /* eslint-disable comma-dangle */
 const express = require('express');
 const passport = require('passport');
+const { celebrate } = require('celebrate');
 
 const router = express.Router();
 const requestRules = require('../requestRules/restaurant.requestrules');
-const { celebrate } = require('celebrate');
 const restaurantController = require('../controller/restaurant.controller');
 
 /* GET restaurant  */
-// router.get('/', restaurantController.getMultiple);
+router.get('/', restaurantController.getMultiple);
 
 router.get('/:restaurant_id', restaurantController.get);
 

@@ -12,7 +12,7 @@
             </button>
         </span>
     </div>
-    <div style="float:left; display:flex;">
+    <div id="searchBar" style="float:left; display:flex;">
            {{!-- <label for="site-search">Search the site:</label> --}}
         <input type="search" class="h-25 w-50 mr-2" id="borough" name="borough">
         <button class="btn btn-info" onclick="return search()">Search</button>
@@ -26,10 +26,17 @@
     if (jwt == null) {
         document.getElementById("addNewRes").style.visibility = "hidden";
         document.getElementById("logout").style.visibility = "hidden";
+        document.getElementById("searchBar").style.visibility = "hidden";
     }
 
     function logout() {
         localStorage.removeItem("jwt");
         window.location.href = '/';
     }
+
+    function search(){
+        let borough = document.getElementById("borough").value;
+        window.location.href = '/view/restaurants?borough='+borough;
+    }
+
 </script>
