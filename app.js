@@ -3,13 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
+const { errors } = require('celebrate');
 require('dotenv').config();
 
 const restaurantRouters = require('./src/routes/restaurant.route');
 const restaurantViewsRouters = require('./src/routes/restaurantsView.route');
 const userRouters = require('./src/routes/user.route');
 const sessionRouters = require('./src/routes/session.route');
-const { errors } = require('celebrate');
 
 require('./src/models/db');
 require('./src/auth/auth');
@@ -17,11 +18,21 @@ require('./src/auth/auth');
 const app = express();
 const port = process.env.PORT || 8000;
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 1000, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+// Apply the rate limiting middleware to all requests
+app.use(limiter);
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
-  // eslint-disable-next-line comma-dangle
+    // eslint-disable-next-line comma-dangle
   })
 );
 app.use(express.static(path.join(__dirname, 'src/public')));

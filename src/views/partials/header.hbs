@@ -12,6 +12,11 @@
             </button>
         </span>
     </div>
+    <div style="float:left; display:flex;">
+           {{!-- <label for="site-search">Search the site:</label> --}}
+        <input type="search" class="h-25 w-50 mr-2" id="borough" name="borough">
+        <button class="btn btn-info" onclick="return search()">Search</button>
+    </div>
 </div>
 <!--TODO: check access -->
 {{> modal/add }}
