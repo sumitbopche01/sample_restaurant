@@ -9,5 +9,10 @@
         for (let index = 0; index < document.getElementsByName("token").length; index++) {
             document.getElementsByName('token')[index].value = jwt;
         }
+    } else {
+        for (let index = 0; index < document.getElementsByClassName("editButton").length; index++) {
+            document.getElementsByClassName('editButton')[index].style.visibility = 'hidden';
+            document.getElementsByClassName('deleteButton')[index].style.visibility = 'hidden';
+        }
     }
 </script>

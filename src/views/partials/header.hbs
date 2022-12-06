@@ -12,31 +12,56 @@
             </button>
         </span>
     </div>
-    <div id="searchBar" style="float:left; display:flex;">
-           {{!-- <label for="site-search">Search the site:</label> --}}
-        <input type="search" class="h-25 w-50 mr-2" id="borough" name="borough">
+</div>
+<div style="display: flex; justify-content: end; background: #b0d0d3; padding-right: 10px;">
+    <div id="searchBar" style="float: right; font-size: 15px; ">
+        {{!-- <label for="site-search">Search the site:</label> --}}
+        <b>Page Number:</b> <input type="number" style="width: 80px" id="page" name="page" title="Enter Page Number"
+                                   value="1">
+        <b>Page Size:</b> <input type="number" style="width: 80px" id="perPage" name="perPage" title="Enter Page Size"
+                                 value="10">
+        <input type="text" style="width: 300px" id="borough" name="borough" placeholder="Enter City">
         <button class="btn btn-info" onclick="return search()">Search</button>
     </div>
 </div>
-<!--TODO: check access -->
 {{> modal/add }}
 
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = urlParams.get('page');
+    if(page) {
+      document.getElementById('page').value = page;
+    }
+    const perPage = urlParams.get('perPage');
+    if(perPage) {
+        document.getElementById('perPage').value = perPage;
+    }
+    const borough = urlParams.get('borough');
+    if(borough) {
+        document.getElementById('borough').value = borough;
+    }
+
     jwt = localStorage.getItem('jwt');
     if (jwt == null) {
-        document.getElementById("addNewRes").style.visibility = "hidden";
-        document.getElementById("logout").style.visibility = "hidden";
-        document.getElementById("searchBar").style.visibility = "hidden";
+        document.getElementById('addNewRes').style.visibility = 'hidden';
+        document.getElementById('logout').style.visibility = 'hidden';
+        document.getElementById('searchBar').style.visibility = 'hidden';
     }
 
     function logout() {
-        localStorage.removeItem("jwt");
+        localStorage.removeItem('jwt');
         window.location.href = '/';
     }
 
-    function search(){
-        let borough = document.getElementById("borough").value;
-        window.location.href = '/view/restaurants?borough='+borough;
+    function search() {
+        let borough = document.getElementById('borough').value;
+        let perPage = document.getElementById('perPage').value;
+        let page = document.getElementById('page').value;
+        let query = 'perPage=' + perPage + '&page=' + page;
+        if (borough) {
+            query += '&borough=' + borough;
+        }
+        window.location.href = '/view/restaurants?' + query;
     }
 
 </script>

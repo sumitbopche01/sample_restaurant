@@ -39,12 +39,12 @@
                         VIEW
                     </button>
                     {{> modal/view }}
-                    <button type="button" class="blueButton" data-toggle="modal" data-target="#edit_restaurant_{{this._id}}">
+                    <button type="button" class="blueButton editButton" data-toggle="modal" data-target="#edit_restaurant_{{this._id}}">
                         EDIT
                     </button>
                     {{> modal/edit }}
                     <div class="divider"/>
-                    <button type="button" class="redButton" data-toggle="modal" data-target="#delete_restaurant_{{this._id}}">
+                    <button type="button" class="redButton deleteButton" data-toggle="modal" data-target="#delete_restaurant_{{this._id}}">
                         DELETE
                     </button>
                     {{> modal/delete }}

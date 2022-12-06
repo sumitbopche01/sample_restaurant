@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable comma-dangle */
 const express = require('express');
 const { celebrate } = require('celebrate');
@@ -42,9 +40,10 @@ router.post(
       })
       // eslint-disable-next-line no-unused-vars
       .then((response) => {
-        res.redirect(
-          `${req.headers.origin}/view/restaurants?javascript:alert("Successfully Added New Data");`
-        );
+        res.redirect('/success.html');
+      })
+      .catch((error) => {
+        res.redirect('/error.html');
       });
   }
 );
@@ -78,12 +77,32 @@ router.post('/edit', (req, res, next) => {
       }
     )
     .then((response) => {
-      res.sendFile('../public/success.html', { root: __dirname });
+      res.redirect('/success.html');
     })
     .catch((error) => {
-      res.sendFile('../public/error.html', { root: __dirname });
+      res.redirect('/error.html');
     });
 });
+
+router.post('/delete',
+  function (req, res, next) {
+
+    axios.delete(req.headers.origin + '/api/restaurants/' + req.body._id,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ` + req.body.token
+        }
+      }
+    )
+      .then((response) => {
+        res.redirect('/success.html');
+      })
+      .catch((error) => {
+        res.redirect('/error.html');
+      });
+  }
+);
 
 router.get('/insert', restaurantController.insertDataView);
 

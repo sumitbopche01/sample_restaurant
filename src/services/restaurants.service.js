@@ -37,7 +37,7 @@ async function getMultiple(queryParams = {}) {
   }
 
   const rows = await Restaurants.find(matchQuery)
-    .sort({ restaurant_id: 1 })
+    .sort({ restaurant_id: 1})
     .skip(offset)
     .limit(numberOfDocuments)
     .lean();
@@ -78,6 +78,7 @@ async function create(restaurantData) {
  * @returns
  */
 async function update(id, restaurantData) {
+  console.log(restaurantData);
   const result = await Restaurants.updateOne({ _id: id }, restaurantData);
 
   let message = 'Error in updating restaurant';
