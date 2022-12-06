@@ -3,11 +3,11 @@ const express = require('express');
 const passport = require('passport');
 
 const router = express.Router();
-const restaurantController = require('../controller/restaurant.controller');
 const { celebrate, Joi, Segments } = require('celebrate');
+const restaurantController = require('../controller/restaurant.controller');
 
 /* GET restaurant  */
-//router.get('/', restaurantController.getMultiple);
+// router.get('/', restaurantController.getMultiple);
 
 router.get('/:restaurant_id', restaurantController.get);
 

@@ -1,15 +1,17 @@
+/* eslint-disable comma-dangle */
 const express = require('express');
 
 const router = express.Router();
-const restaurantController = require('../controller/restaurant.controller');
 const {
   celebrate,
   Segments,
   Joi
 } = require('celebrate');
+const restaurantController = require('../controller/restaurant.controller');
 
 /* GET restaurant  */
-router.get('/',
+router.get(
+  '/',
   celebrate({
     [Segments.QUERY]: {
       page: Joi.number().integer().min(1),
