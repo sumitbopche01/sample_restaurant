@@ -18,7 +18,7 @@
 {{> modal/add }}
 
 <script>
-    const jwt = localStorage.getItem('jwt');
+    jwt = localStorage.getItem('jwt');
     if (jwt == null) {
         document.getElementById("addNewRes").style.visibility = "hidden";
         document.getElementById("logout").style.visibility = "hidden";

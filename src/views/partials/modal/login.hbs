@@ -38,12 +38,13 @@
         </div>
     </div>
     <script>
+        jwt = localStorage.getItem('jwt');
+        if (jwt != null) {
+            window.location.href = '/view/restaurants/';
+        }
+
         document.getElementById("loginButton").addEventListener("click", function(event){
             event.preventDefault();
-            const jwt = localStorage.getItem('jwt');
-            if (jwt != null) {
-                window.location.href = '/view/restaurants/';
-            }
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
