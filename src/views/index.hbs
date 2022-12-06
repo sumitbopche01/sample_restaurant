@@ -9,4 +9,11 @@
     {{> modal/login }}
     {{> modal/signup }}
     <br><br><br>
+    <script>
+        const jwt = localStorage.getItem('jwt');
+        console.log("jwt", jwt);
+        if (jwt != null) {
+            window.location.href = '/view/restaurants/';
+        }
+    </script>
 </center>
