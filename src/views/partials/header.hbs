@@ -1,13 +1,31 @@
 <div class='headerMain'>
     <div>
         <span id="logo">Tomato</span>, one place to find all restaurants </b>
-        <!--TODO: check access -->
-        <span id="" style="float:right; padding-top: 15px; font-size: 15px">
+        <span id="logout" style="float:right; padding-top: 15px; font-size: 15px; margin-left:10px;">
+            <button type="button" class="blueButton" data-toggle="modal" onclick="logout()">
+                Log Out
+            </button>
+        </span>
+        <span id="addNewRes" style="float:right; padding-top: 15px; font-size: 15px">
             <button type="button" class="greenButton" data-toggle="modal" data-target="#Add_restaurant">
                 Add New Restaurant
             </button>
         </span>
+        
     </div>
 </div>
 <!--TODO: check access -->
 {{> modal/add }}
+
+<script>
+    const jwt = localStorage.getItem('jwt');
+    if (jwt == null) {
+        document.getElementById("addNewRes").style.visibility = "hidden";
+        document.getElementById("logout").style.visibility = "hidden";
+    }
+
+    function logout() {
+        localStorage.removeItem("jwt");
+        window.location.href = '/';
+    }
+</script>
