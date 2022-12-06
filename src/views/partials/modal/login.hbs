@@ -9,7 +9,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="http://localhost:8000/api/user/login" method="post">
+            <form>
                 <div class="modal-body">
                     <table>
                         <tr>
@@ -17,7 +17,7 @@
                                 Email:
                             </td>
                             <td>
-                                <input type="text" name="email" placeholder="Enter Email Id" required/>
+                                <input type="text" name="email" id="email" placeholder="Enter Email Id" required/>
                             </td>
                         </tr>
                         <tr>
@@ -25,17 +25,49 @@
                                 Password:
                             </td>
                             <td>
-                                <input type="password" name="password" placeholder="Enter Password" required/>
+                                <input type="password" id="password" name="password" placeholder="Enter Password" required/>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="hidden" name="operation" value="add">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" id="loginButton">Login</button>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function(event){
+            event.preventDefault();
+            const jwt = localStorage.getItem('jwt');
+            if (jwt != null) {
+                window.location.href = '/view/restaurants/';
+            }
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.open('POST', 'http://localhost:8000/api/user/login');
+            xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhttp.send(
+                JSON.stringify({
+                email,
+                password,
+            }));
+            
+            xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                const objects = JSON.parse(this.responseText);
+                if (objects.token) {
+                    localStorage.setItem('jwt', objects.token);
+                    window.location.href = '/view/restaurants/';
+                } else {
+                    console.log('Error while fetching token');
+                    window.location.href = '/';
+                }
+            }
+            }
+        });
+    </script>
 </div>
