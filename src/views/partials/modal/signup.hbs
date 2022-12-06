@@ -17,7 +17,7 @@
                                 Email:
                             </td>
                             <td>
-                                <input type="text" name="email" placeholder="Enter Email" required/>
+                                <input type="text" name="email" id="emailSignUp" placeholder="Enter Email" required/>
                             </td>
                         </tr>
                         <tr>
@@ -25,7 +25,7 @@
                                 Password:
                             </td>
                             <td>
-                                <input type="password" name="password" placeholder="Enter Password" required/>
+                                <input type="password" name="password" id="passwordSignUp" placeholder="Enter Password" required/>
                             </td>
                         </tr>
                         <tr>
@@ -33,7 +33,7 @@
                                 Confirm Password:
                             </td>
                             <td>
-                                <input type="password" name="confirm-password" placeholder="Enter Password" required/>
+                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Enter Password" required/>
                             </td>
                         </tr>
                     </table>
@@ -41,9 +41,47 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="hidden" name="operation" value="add">
-                    <button type="submit" class="btn btn-primary">Sign up</button>
+                    <button type="submit" id="signupButton" class="btn btn-primary">Sign up</button>
                 </div>
             </form>
+
+            <script>
+                jwt = localStorage.getItem('jwt');
+                if (jwt != null) {
+                    window.location.href = '/view/restaurants/';
+                }
+
+                document.getElementById("signupButton").addEventListener("click", function(event){
+                    event.preventDefault();
+                    const emailSignUp = document.getElementById('emailSignUp').value;
+                    const passwordElement = document.getElementById('passwordSignUp');
+                    const confirmPasswordElement = document.getElementById('confirm-password');
+
+                    console.log("email password: " + passwordElement.value, emailSignUp)
+
+
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.open('POST', 'http://localhost:8000/api/user/signup');
+                    xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                    xhttp.send(
+                        JSON.stringify({
+                        email: emailSignUp,
+                        password: passwordElement.value,
+                    }));
+                    
+                    xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4) {
+                        const objects = JSON.parse(this.responseText);
+                        if (objects.user) {
+                            window.location.href = '/';
+                        } else {
+                            console.log('Error while fetching token');
+                            window.location.href = '/';
+                        }
+                    }
+                    }
+                });
+            </script>
         </div>
     </div>
 </div>
